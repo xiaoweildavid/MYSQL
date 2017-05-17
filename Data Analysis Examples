@@ -7,3 +7,10 @@ CREATE TABLE joinedOrderInfo as (SELECT * FROM orders LEFT JOIN order_items ON o
 # Drop duplicated column, 'id'.
 ALTER TABLE joinedOrderInfo DROP order_item_id;
 
+# Now I want to find out daily sales revenue.
+SELECT *, (order_item_quantity * order_item_product_price) as daily_revenue from joinedOrderInfo limit 2;
+# This is actually the same as order_item_subtotal.
+
+# Grouping daily revenue by date.
+SELECT order_date, sum(order_item_subtotal) as daily_revenue FROM joinedOrderInfo GROUP BY order_date ORDER BY order_date asc;
+
