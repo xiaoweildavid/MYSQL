@@ -1,0 +1,9 @@
+# MySQL For data analysis. 
+# Using Cloudera default databases, 'retail_db'.
+
+# Join two tables, 'orders' and 'order_items', as a new table joinedOrderInfo.
+CREATE TABLE joinedOrderInfo as (SELECT * FROM orders LEFT JOIN order_items ON orders.order_id=order_items.order_item_id);
+
+# Drop duplicated column, 'id'.
+ALTER TABLE joinedOrderInfo DROP order_item_id;
+
