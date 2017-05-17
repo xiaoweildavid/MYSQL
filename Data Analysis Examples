@@ -14,3 +14,6 @@ SELECT *, (order_item_quantity * order_item_product_price) as daily_revenue from
 # Grouping daily revenue by date.
 SELECT order_date, sum(order_item_subtotal) as daily_revenue FROM joinedOrderInfo GROUP BY order_date ORDER BY order_date asc;
 
+# Output MySQL to outfile.
+SELECT * FROM joinedOrderInfo INTO OUTFILE '/tmp/MYSQL_OUTPUT.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+
